@@ -15,7 +15,7 @@
 
             <div class="form-group mb-4">
                 <label for="age">Age</label>
-                <input type="number" name="age" class="form-control" placeholder="Enter Age" required>
+                <input type="number" name="age" id="age" class="form-control" placeholder="Enter Age" required>
                 @error('age')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -35,12 +35,12 @@
 
             <div class="form-group mb-4">
                 <label for="disability">Disability</label>
-                <select class="form-control" name="disablility"  id="disablility">
+                <select class="form-control" name="disability"  id="disability">
                     <option value="">---Select---</option>
                     <option value="Yes">Yes</option>
                     <option value="No">No</option>
                 </select>
-                @error('disablility') 
+                @error('disability') 
                     <p class="text-danger">{{$message}}</p>
                 @enderror
             </div>

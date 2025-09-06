@@ -22,6 +22,15 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
+        'age',
+        'phone_number',
+        'address',
+        'disability',
+        'gender',
+        'identification',
+        'photo',
+        'occupation',
+        'approved',
     ];
 
     /**
@@ -42,4 +51,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hasUpdatedBioData(){
+        return !empty($this->identification);
+    }
 }
