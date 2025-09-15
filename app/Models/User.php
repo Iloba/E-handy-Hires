@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Skill;
+use App\Models\Experience;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -54,5 +56,13 @@ class User extends Authenticatable
 
     public function hasUpdatedBioData(){
         return !empty($this->identification);
+    }
+
+    public function skills(){
+        return $this->hasMany(Skill::class);
+    }
+
+    public function experiences(){
+        return $this->hasMany(Experience::class);
     }
 }

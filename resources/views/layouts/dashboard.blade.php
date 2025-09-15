@@ -253,8 +253,10 @@
                         </a>
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('add.skills') }}">Add Skill</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">View Skills</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('add.skills') }}">Add Skill</a>
+                                </li>
+                                {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('view.skills') }}">View
+                                        Skills</a></li> --}}
                             </ul>
                         </div>
                     </li>
@@ -267,8 +269,10 @@
                         </a>
                         <div class="collapse" id="ui-basics">
                             <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{  route('add.experience') }}">Add Experience</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="#">View Experience</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{  route('add.experience') }}">Add
+                                        Experience</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('view.experience') }}">View
+                                        Experience</a></li>
                             </ul>
                         </div>
                     </li>
@@ -344,8 +348,9 @@
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    <span></span>Overview <i
-                                        class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                                    <span></span>Number of Skills
+                                    <i
+                                        class="badge badge-success rounded-circle">{{ auth()->user()->skills()->count() }}</i>
                                 </li>
                             </ul>
                         </nav>
@@ -446,8 +451,15 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+  
     <!-- container-scroller -->
     <!-- plugins:js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    
+    <!-- Bootstrap 4 JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -462,6 +474,7 @@
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/todolist.js"></script>
+
     <!-- End custom js for this page -->
 </body>
 

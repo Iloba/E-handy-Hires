@@ -28,8 +28,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware(['auth'])->group(function () {
     Route::get('update-domestic-staff-bio-data', [BiodataController::class, 'update'])
         ->name('update.bio.data');
-        
-        Route::post('save-domestic-staff-bio-data', [BiodataController::class, 'saveBioData'])->name('save.bio.data');
-        Route::get('add-skill', [SkillController::class, 'addSkill'])->name('add.skills');
-       Route::get('add-experience', [ExperienceController::class, 'addExperience'])->name('add.experience');
+
+    Route::post('save-domestic-staff-bio-data', [BiodataController::class, 'saveBioData'])->name('save.bio.data');
+    Route::get('add-skill', [SkillController::class, 'addSkill'])->name('add.skills');
+    Route::get('view-skills', [SkillController::class, 'ViewSkills'])->name('view.skills');
+    Route::get('add-experience', [ExperienceController::class, 'addExperience'])->name('add.experience');
+    Route::post('save-skill', [SkillController::class, 'saveSkill'])->name('save.skill');
+    Route::delete('delete-skill/{skill}', [SkillController::class, 'deleteSkill'])->name('delete.skill');
+    Route::post('save-experience', [ExperienceController::class, 'saveExperience'])->name('save.experience');
+    Route::get('view-experience', [ExperienceController::class, 'viewExperience'])->name('view.experience');
 });
