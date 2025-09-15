@@ -37,4 +37,5 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('delete-skill/{skill}', [SkillController::class, 'deleteSkill'])->name('delete.skill');
     Route::post('save-experience', [ExperienceController::class, 'saveExperience'])->name('save.experience');
     Route::get('view-experience', [ExperienceController::class, 'viewExperience'])->name('view.experience');
+    Route::delete('delete-experience/{experience}', [ExperienceController::class, 'deleteExperience'])->name('delete.experience');
 });

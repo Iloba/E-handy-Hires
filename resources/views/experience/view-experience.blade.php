@@ -26,7 +26,7 @@
                             <td>{{ $experience->start_date }}</td>
                             <td>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                <button type="button" class="btn btn-primary btn-sm  d-block mx-auto" data-toggle="modal"
                                     data-target="#exampleModal-{{  $experience->id }}">
                                     <i class="mdi mdi-eye-outline"></i>
                                 </button>
@@ -55,7 +55,7 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                <button type="button" class="btn btn-primary btn-sm d-block mx-auto" data-toggle="modal"
                                     data-target="#exampleModal2-{{  $experience->id }}">
                                     <i class="mdi mdi-eye-outline"></i>
                                 </button>
@@ -85,9 +85,18 @@
                             </td>
                             {{-- <td>{{ $skill->skill_type }}</td> --}}
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm">
-                                    <i class="mdi mdi-delete"></i>
-                                </button>
+                                <a href="{{ route('delete.experience', $experience) }}"
+                                    onclick="
+                                event.preventDefault();
+                                if(confirm('Dangerous Action, Do you want to Continue??')){
+                                     document.getElementById('{{ 'form-delete-' . $experience->id }}').submit();
+                                }" class="btn btn-danger btn-sm"><i class="mdi mdi-delete"></i></a>
+
+                                <form action="{{ route('delete.experience', $experience) }}" method="POST"
+                                    class="d-none" id="{{ 'form-delete-' . $experience->id }}">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
                             </td>
                         </tr>
                     @empty

@@ -47,4 +47,14 @@ class ExperienceController extends Controller
             'experiences' => $experiences
         ]);
     }
+
+    public function deleteExperience(Experience $experience){
+         if ($experience->user_id !== auth()->id()) {
+            abort(403, 'Unauthorized action.');
+        }
+        $experience->delete();
+
+        sweetalert()->addSuccess("Experience Deleted Successfully");
+        return back();
+    }
 }
