@@ -45,8 +45,8 @@
                                 <label for="role" class="">{{ __('Role') }}</label>
                                 <select name="role" id="role" class="form-control" required>
                                     <option value="">--select--</option>
-                                    <option value="Domestic Staff">Domestic Staff</option>
-                                    <option value="Employer">Employer</option>
+                                    <option value="domestic_staff">Domestic Staff</option>
+                                    <option value="employer">Employer</option>
                                 </select>
 
                                 @error('role')
