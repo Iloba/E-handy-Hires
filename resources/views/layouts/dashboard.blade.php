@@ -61,8 +61,7 @@
                             <div class="input-group-prepend bg-transparent">
                                 <i class="input-group-text border-0 mdi mdi-magnify"></i>
                             </div>
-                            <input type="text" class="form-control bg-transparent border-0"
-                                placeholder="Search projects">
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Search ">
                         </div>
                     </form>
                 </div>
@@ -71,8 +70,8 @@
                         <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="nav-profile-img">
-                                <img src="{{ asset('storage/Passport_Photographs/' . Auth::user()->photo) }}"
-                                    alt="image">
+                                 <img src="{{ asset(Auth::user()->photo ? 'storage/Passport_Photographs/' . Auth::user()->photo : 'images/user.png') }}"
+                                    alt="ee">
                                 <span class="availability-status online"></span>
                             </div>
                             <div class="nav-profile-text">
@@ -226,8 +225,8 @@
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="{{ asset('storage/Passport_Photographs/' . Auth::user()->photo) }}"
-                                    alt="profile">
+                                <img src="{{ asset(Auth::user()->photo ? 'storage/Passport_Photographs/' . Auth::user()->photo : 'images/user.png') }}"
+                                    alt="ee">
                                 <span class="login-status online"></span>
                                 <!--change to offline or busy as needed-->
                             </div>
@@ -282,8 +281,8 @@
                                 </ul>
                             </div>
                         </li>
-                        @else
-                            <li class="nav-item">
+                    @else
+                        <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
                                 aria-controls="ui-basic">
                                 <span class="menu-title">Domestic Staff</span>
@@ -300,7 +299,6 @@
                                 </ul>
                             </div>
                         </li>
-
                     @endif
 
                     {{-- <li class="nav-item">
