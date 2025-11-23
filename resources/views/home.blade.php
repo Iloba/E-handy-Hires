@@ -1,8 +1,8 @@
 @extends('layouts.dashboard')
 
 @section('content')
-<div class="container">
-    {{-- <div class="row justify-content-center">
+    <div class="container">
+        {{-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
@@ -19,115 +19,226 @@
             </div>
         </div>
     </div> --}}
-    <div class="row">
-        <div class="col-md-4 stretch-card grid-margin">
-          <div class="card bg-gradient-danger card-img-holder text-white">
-            <div class="card-body">
-              <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-              <h4 class="font-weight-normal mb-3">Weekly Sales <i class="mdi mdi-chart-line mdi-24px float-right"></i>
-              </h4>
-              <h2 class="mb-5">$ 15,0000</h2>
-              <h6 class="card-text">Increased by 60%</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 stretch-card grid-margin">
-          <div class="card bg-gradient-info card-img-holder text-white">
-            <div class="card-body">
-              <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-              <h4 class="font-weight-normal mb-3">Weekly Orders <i class="mdi mdi-bookmark-outline mdi-24px float-right"></i>
-              </h4>
-              <h2 class="mb-5">45,6334</h2>
-              <h6 class="card-text">Decreased by 10%</h6>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 stretch-card grid-margin">
-          <div class="card bg-gradient-success card-img-holder text-white">
-            <div class="card-body">
-              <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-              <h4 class="font-weight-normal mb-3">Visitors Online <i class="mdi mdi-diamond mdi-24px float-right"></i>
-              </h4>
-              <h2 class="mb-5">95,5741</h2>
-              <h6 class="card-text">Increased by 5%</h6>
-            </div>
-          </div>
-        </div>
-      </div>
+        @if (Auth::user()->role == 'employer')
+            <div class="row">
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-danger card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">Number of Domestic Staff
+                            </h4>
+                            <h3>
 
-      <div class="row">
-        <div class="col-12 grid-margin">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Recent Tickets</h4>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th> Assignee </th>
-                                    <th> Subject </th>
-                                    <th> Status </th>
-                                    <th> Last Update </th>
-                                    <th> Tracking ID </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <img src="assets/images/faces/face1.jpg" class="me-2"
-                                            alt="image"> David Grey
-                                    </td>
-                                    <td> Fund is not recieved </td>
-                                    <td>
-                                        <label class="badge badge-gradient-success">DONE</label>
-                                    </td>
-                                    <td> Dec 5, 2017 </td>
-                                    <td> WD-12345 </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/images/faces/face2.jpg" class="me-2"
-                                            alt="image"> Stella Johnson
-                                    </td>
-                                    <td> High loading time </td>
-                                    <td>
-                                        <label class="badge badge-gradient-warning">PROGRESS</label>
-                                    </td>
-                                    <td> Dec 12, 2017 </td>
-                                    <td> WD-12346 </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/images/faces/face3.jpg" class="me-2"
-                                            alt="image"> Marina Michel
-                                    </td>
-                                    <td> Website down for one week </td>
-                                    <td>
-                                        <label class="badge badge-gradient-info">ON HOLD</label>
-                                    </td>
-                                    <td> Dec 16, 2017 </td>
-                                    <td> WD-12347 </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="assets/images/faces/face4.jpg" class="me-2"
-                                            alt="image"> John Doe
-                                    </td>
-                                    <td> Loosing control on server </td>
-                                    <td>
-                                        <label class="badge badge-gradient-danger">REJECTED</label>
-                                    </td>
-                                    <td> Dec 3, 2017 </td>
-                                    <td> WD-12348 </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                @php
+                                    $staffCount = \App\Models\User::where('role', 'domestic_staff')->count();
+
+                                @endphp
+                                {{ $staffCount }}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-info card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">Number of Skills
+                            </h4>
+                            <h3>
+                                @php
+                                    $skillCount = \App\Models\Skill::count();
+                                @endphp
+                                {{ $skillCount }}
+
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-success card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">Number of Unique Experiences
+                            </h4>
+                            <h3>
+                                @php
+                                    $experienceCount = \App\Models\Experience::distinct('name_of_workplace')->count(
+                                        'name_of_workplace',
+                                    );
+                                @endphp
+                                {{ $experienceCount }}
+                            </h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="row">
+
+            <div class="row">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Domestic Staff</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th> Staff </th>
+                                            <th> Skill </th>
+                                            <th> Status </th>
+                                            <th> Gender</th>
+                                            <th> Age </th>
+                                            <th> More Details </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $staff = \App\Models\User::where('role', 'domestic_staff')->get();
+
+                                        @endphp
+                                        @forelse ($staff as $st)
+                                            <tr>
+                                                <td>
+                                                    <img src="{{ asset('storage/Passport_Photographs/' . $st->photo) }}"
+                                                        class="me-2" alt="image">
+                                                    {{ $st->full_name }}
+                                                </td>
+                                                <td> {{ $st->skills()->first()->skill_type }}</td>
+                                                <td>
+                                                    <label class="badge badge-gradient-success">Approved</label>
+                                                </td>
+                                                <td> {{ $st->gender }} </td>
+                                                <td> {{ $st->age }} </td>
+                                                <td>
+                                                    <!-- Button trigger modal -->
+                                                    <button type="button" class="btn btn-primary btn-sm  d-block mx-auto"
+                                                        data-toggle="modal" data-target="#exampleModal-{{ $st->id }}">
+                                                        <i class="mdi mdi-eye-outline"></i>
+                                                    </button>
+
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="exampleModal-{{ $st->id }}"
+                                                        tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                        {{ $st->full_name }}</h5>
+                                                                    <button type="button" class="close"
+                                                                        data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-3">
+                                                                            <img style=""
+                                                                                src="{{ asset('storage/Passport_Photographs/' . $st->photo) }}"
+                                                                                class="img-fluid rounded w-100 h-100"
+                                                                                alt="image">
+                                                                        </div>
+                                                                           <div class="col-md-4">
+                                                                            <h5>Skills:</h5>
+                                                                            <ul>
+                                                                                @foreach ($st->skills as $skill)
+                                                                                    <li>{{ $skill->skill_type }}
+                                                                                        {{ $skill->proficiency_level }}
+                                                                                    </li>
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <h5>Experiences:</h5>
+                                                                            <ul>
+                                                                                @foreach ($st->experiences as $experience)
+                                                                                    <li>
+                                                                                        {{ $experience->name_of_workplace }}
+                                                                                        <br>
+
+                                                                                        Start Date:
+                                                                                        {{ \Carbon\Carbon::parse($experience->start_date)->format('F d, Y') }}
+                                                                                        <br>
+                                                                                        End Date:
+                                                                                        {{ \Carbon\Carbon::parse($experience->end_date)->format('F d, Y') }}
+
+                                                                                    </li>
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </div>
+
+
+                                                                        </div>
+                                                                    
+
+                                                                        <div class="row ">
+                                                                            <div class="col-md-6">
+                                                                                <a href=""
+                                                                                    class="btn btn-primary ">Hire</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</button>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <p>No staff</p>
+                                        @endforelse
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        @if (Auth::user()->role == 'domestic_staff')
+            <div class="row">
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-danger card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">Number Skills
+                            </h4>
+                            <h3>100</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-info card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">Contracts
+                            </h4>
+                            <h3>100</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 stretch-card grid-margin">
+                    <div class="card bg-gradient-success card-img-holder text-white">
+                        <div class="card-body">
+                            <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
+                            <h4 class="font-weight-normal mb-3">Number of Experiences
+                            </h4>
+                            <h3>100</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        {{-- <div class="row">
         <div class="col-md-7 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -292,6 +403,6 @@
                 </div>
             </div>
         </div>
+    </div> --}}
     </div>
-</div>
 @endsection

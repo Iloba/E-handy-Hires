@@ -47,8 +47,7 @@
         <!-- partial:partials/_navbar.html -->
         <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo" href="{{ route('home') }}"><img src="assets/images/logo.svg"
-                        alt="logo" /></a>
+                <a class="navbar-brand brand-logo" href="{{ route('home') }}">E-Handy Hires</a>
                 <a class="navbar-brand brand-logo-mini" href="{{ route('home') }}"><img
                         src="assets/images/logo-mini.svg" alt="logo" /></a>
             </div>
@@ -62,18 +61,17 @@
                             <div class="input-group-prepend bg-transparent">
                                 <i class="input-group-text border-0 mdi mdi-magnify"></i>
                             </div>
-                            <input type="text" class="form-control bg-transparent border-0"
-                                placeholder="Search projects">
+                            <input type="text" class="form-control bg-transparent border-0" placeholder="Search ">
                         </div>
                     </form>
                 </div>
                 <ul class="navbar-nav navbar-nav-right">
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" id="profileDropdown" href="#"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="nav-profile-img">
-                                <img src="{{ asset('storage/Passport_Photographs/' . Auth::user()->photo) }}"
-                                    alt="image">
+                                 <img src="{{ asset(Auth::user()->photo ? 'storage/Passport_Photographs/' . Auth::user()->photo : 'images/user.png') }}"
+                                    alt="ee">
                                 <span class="availability-status online"></span>
                             </div>
                             <div class="nav-profile-text">
@@ -84,7 +82,8 @@
                             {{-- <a class="dropdown-item custom-style-for-dropdown" href="#">
                                 <i class="mdi mdi-cached me-2 text-success"></i> Others </a>
                             <div class="dropdown-divider"></div> --}}
-                            <a class="dropdown-item custom-style-for-dropdown" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <a class="dropdown-item custom-style-for-dropdown" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
                                 <i class="mdi mdi-logout me-2 text-primary"></i> Signout
                             </a>
@@ -226,8 +225,8 @@
                     <li class="nav-item nav-profile">
                         <a href="#" class="nav-link">
                             <div class="nav-profile-image">
-                                <img src="{{ asset('storage/Passport_Photographs/' . Auth::user()->photo) }}"
-                                    alt="profile">
+                                <img src="{{ asset(Auth::user()->photo ? 'storage/Passport_Photographs/' . Auth::user()->photo : 'images/user.png') }}"
+                                    alt="ee">
                                 <span class="login-status online"></span>
                                 <!--change to offline or busy as needed-->
                             </div>
@@ -244,63 +243,89 @@
                             <i class="mdi mdi-home menu-icon"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                            aria-controls="ui-basic">
-                            <span class="menu-title">Skills</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-briefcase-check menu-icon"></i>
-                        </a>
-                        <div class="collapse" id="ui-basic">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('add.skills') }}">Add Skill</a>
-                                </li>
-                                {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('view.skills') }}">View
+
+
+                    @if (Auth::user()->role == 'domestic_staff')
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                                aria-controls="ui-basic">
+                                <span class="menu-title">Skills</span>
+                                <i class="menu-arrow"></i>
+                                <i class="mdi mdi-briefcase-check menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="{{ route('add.skills') }}">Add
+                                            Skill</a>
+                                    </li>
+                                    {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('view.skills') }}">View
                                         Skills</a></li> --}}
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basics" aria-expanded="false"
-                            aria-controls="ui-basics">
-                            <span class="menu-title">Experience</span>
-                            <i class="menu-arrow"></i>
-                            <i class="mdi mdi-briefcase-account menu-icon"></i>
-                        </a>
-                        <div class="collapse" id="ui-basics">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="{{  route('add.experience') }}">Add
-                                        Experience</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('view.experience') }}">View
-                                        Experience</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="nav-item">
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basics" aria-expanded="false"
+                                aria-controls="ui-basics">
+                                <span class="menu-title">Experience</span>
+                                <i class="menu-arrow"></i>
+                                <i class="mdi mdi-briefcase-account menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="ui-basics">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link"
+                                            href="{{ route('add.experience') }}">Add
+                                            Experience</a></li>
+                                    <li class="nav-item"> <a class="nav-link"
+                                            href="{{ route('view.experience') }}">View
+                                            Experience</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                                aria-controls="ui-basic">
+                                <span class="menu-title">Domestic Staff</span>
+                                <i class="menu-arrow"></i>
+                                <i class="mdi mdi-briefcase-check menu-icon"></i>
+                            </a>
+                            <div class="collapse" id="ui-basic">
+                                <ul class="nav flex-column sub-menu">
+                                    <li class="nav-item"> <a class="nav-link" href="">All
+                                            Staff</a>
+                                    </li>
+                                    {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('view.skills') }}">View
+                                        Skills</a></li> --}}
+                                </ul>
+                            </div>
+                        </li>
+                    @endif
+
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span class="menu-title">Icons</span>
                             <i class="mdi mdi-contacts menu-icon"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span class="menu-title">Forms</span>
                             <i class="mdi mdi-format-list-bulleted menu-icon"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span class="menu-title">Charts</span>
                             <i class="mdi mdi-chart-bar menu-icon"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="#">
                             <span class="menu-title">Tables</span>
                             <i class="mdi mdi-table-large menu-icon"></i>
                         </a>
-                    </li>
-                    <li class="nav-item">
+                    </li> --}}
+                    {{-- <li class="nav-item">
                         <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
                             aria-controls="general-pages">
                             <span class="menu-title">Sample Pages</span>
@@ -321,7 +346,7 @@
                                     </a></li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item sidebar-actions">
                         {{-- <span class="nav-link">
                             <div class="border-bottom">
@@ -347,18 +372,22 @@
                         </h3>
                         <nav aria-label="breadcrumb">
                             <ul class="breadcrumb">
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    <span></span>Number of Skills
-                                    <i
-                                        class="badge badge-success rounded-circle">{{ auth()->user()->skills()->count() }}</i>
-                                </li>
+
+                                @if (Auth::user()->role == 'domestic_staff')
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        <span></span>Number of Skills
+                                        <i
+                                            class="badge badge-success rounded-circle">{{ auth()->user()->skills()->count() }}</i>
+                                    </li>
+                                @endif
+
                             </ul>
                         </nav>
                     </div>
-                    @if (Auth::user()->role == 'Domestic Staff')
+                    @if (Auth::user()->role == 'domestic_staff')
                         @if (!Auth::user()->hasUpdatedBioData())
                             <p>Please Update bio data before continuing</p>
-                            <a class="btn btn-primary" href="{{ route('update.bio.data')}}">Update Bio Data</a>
+                            <a class="btn btn-primary" href="{{ route('update.bio.data') }}">Update Bio Data</a>
                         @endif
                     @endif
                     <div class="py-4">
@@ -451,15 +480,15 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
-  
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    
+
     <!-- Bootstrap 4 JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
